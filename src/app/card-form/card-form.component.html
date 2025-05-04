@@ -1,27 +1,52 @@
 <div class="columns">
   <div class="column">
-  <app-card
-  [name]="cardForm.controls.name.value || ''"
-  [cardNumber]="cardForm.controls.card_number.value || ''"
-  [expiration]="cardForm.controls.expiration.value || ''"
-  ></app-card>
+    <app-card
+      [name]="cardForm.controls.name.value || ''"
+      [cardNumber]="cardForm.controls.card_number.value || ''"
+      [expiration]="cardForm.controls.expiration.value || ''"
+    ></app-card>
   </div>
-<div class="column">
-  <form [formGroup] = "cardForm" (ngSubmit)="onSubmit()">
-    <app-input label="Name" [control]="cardForm.controls.name"></app-input>
-    <app-input label="Card Number" [control]="cardForm.controls.card_number"></app-input>
-    <div class="columns">
-      <div class="column">
-        <app-input label="Expiration (MM/YY)" [control]="cardForm.controls.expiration"></app-input>
+  <div class="column">
+    <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+      <app-input label="Name" [control]="cardForm.controls.name"></app-input>
+      <app-input label="Card Number" [control]="cardForm.controls.card_number"></app-input>
+      <div class="columns">
+        <div class="column">
+          <app-input label="Expiration (MM/YY)" [control]="cardForm.controls.expiration"></app-input>
+        </div>
+        <div class="column">
+          <app-input label="Security Code" [control]="cardForm.controls.security_code"></app-input>
+        </div>
       </div>
-      <div class="column">
-        <app-input label="Security Code" [control]="cardForm.controls.security_code"></app-input>
+      <div class="buttons">
+        <button class="button is-primary" [disabled]="cardForm.invalid || isProcessing" type="submit">
+          <span *ngIf="!isProcessing">Submit</span>
+          <span *ngIf="isProcessing">Processing...</span>
+        </button>
+        <button class="button is-warning" type="button" (click)="onResetClick()" [disabled]="isProcessing">Reset</button>
+      </div>
+    </form>
+
+    <!-- Payment Status Section -->
+    <div *ngIf="paymentStatus !== 'idle'" class="payment-status-container">
+      <div *ngIf="paymentStatus === 'processing'" class="payment-status processing">
+        <div class="spinner"></div>
+        <p>{{ statusMessage }}</p>
+      </div>
+      
+      <div *ngIf="paymentStatus === 'success'" class="payment-status success">
+        <div class="status-icon success-icon">✓</div>
+        <h3 class="status-message">{{ statusMessage }}</h3>
+        <div class="transaction-details">
+          <pre>{{ transactionDetails }}</pre>
+        </div>
+      </div>
+      
+      <div *ngIf="paymentStatus === 'error'" class="payment-status error">
+        <div class="status-icon error-icon">✗</div>
+        <h3 class="status-message">{{ statusMessage }}</h3>
+        <p class="error-help">Please try again or contact customer support.</p>
       </div>
     </div>
-    <div class="buttons">
-      <button class="button is-primary" [disabled]="cardForm.invalid" type="submit">Submit</button>
-      <button class="button is-warning" type="=button" (click)="onResetClick()">Reset</button>
-    </div>
-</form>
   </div>
 </div>
