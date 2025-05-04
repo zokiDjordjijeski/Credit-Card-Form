@@ -1,59 +1,72 @@
-# Creditcard
+# Credit Card Form - Angular Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
+## Project Overview
 
-## Development server
+This project is an interactive credit card form built with Angular. It provides a user-friendly interface for entering credit card information with real-time validation and a visual card preview that updates as the user types.
 
-To start a local development server, run:
+![Credit Card Form Preview](https://via.placeholder.com/800x400?text=Credit+Card+Form+Preview)
+![Screenshot (16)](https://github.com/user-attachments/assets/7d272a9e-7de0-414c-b7b6-d98b3108cb73)
 
-```bash
-ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Features
 
-## Code scaffolding
+- **Interactive Card Preview**: Visual representation of the card updates in real-time as users enter information
+- **Form Validation**: Comprehensive validation for all credit card fields
+- **Formatted Inputs**: Automatic formatting for:
+  - Credit card number (spaces after every 4 digits)
+  - Expiration date (MM/YY format)
+  - CVV code
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Technologies Used
 
-```bash
-ng generate component component-name
-```
+- Angular 17+
+- TypeScript
+- Reactive Forms
+- Custom Form Controls
+- CSS for card animations
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+4. Open your browser and navigate to `http://localhost:4200/`
 
-```bash
-ng generate --help
-```
+## Project Structure
 
-## Building
+- `app.component`: Main application component
+- `card-form.component`: Handles form logic and validation
+- `card.component`: Visual credit card preview
+- `input.component`: Reusable form input with validation
+- `date-form-control`: Custom form control for expiration date formatting
 
-To build the project run:
+## Form Validation
 
-```bash
-ng build
-```
+The application includes validation for:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- **Card Number**: Must be a valid credit card number format
+- **Card Name**: Required field
+- **Expiration Date**: Must follow MM/YY format
+- **Security Code**: Must be 3 or 4 digits
 
-## Running unit tests
+## Custom Form Controls
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+The project demonstrates the use of custom form controls in Angular, particularly for the expiration date field which automatically formats input to the MM/YY pattern.
 
-```bash
-ng test
-```
+## How It Works
 
-## Running end-to-end tests
+1. User enters credit card information in the form
+2. Real-time validation provides immediate feedback
+3. The card preview updates as information is entered
+4. Form can only be submitted when all validations pass
 
-For end-to-end (e2e) testing, run:
+## Development
 
-```bash
-ng e2e
-```
+### Prerequisites
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- Node.js (v14+)
+- Angular CLI (v17+)
 
-## Additional Resources
+## License
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Card design inspired by [Adam Quinlan's CodePen](https://codepen.io/quinlo/pen/YONMEa)
+- Form validation techniques based on Angular best practices
