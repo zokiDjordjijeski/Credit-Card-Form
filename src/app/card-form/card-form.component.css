@@ -1,0 +1,153 @@
+/* Card form layout */
+.columns {
+  display: flex;
+  margin: -0.75rem;
+}
+
+.column {
+  flex: 1;
+  padding: 0.75rem;
+}
+
+/* Button styling */
+.buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.button {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.button.is-primary {
+  background-color: #3273dc;
+  color: white;
+}
+
+.button.is-primary:hover:not(:disabled) {
+  background-color: #276cda;
+}
+
+.button.is-warning {
+  background-color: #ffdd57;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.button.is-warning:hover:not(:disabled) {
+  background-color: #ffd83d;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Payment status styling */
+.payment-status-container {
+  margin-top: 1.5rem;
+}
+
+.payment-status {
+  padding: 1.25rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  animation: fadeIn 0.3s ease-in-out;
+  text-align: center;
+}
+
+.payment-status.processing {
+  background-color: #f5f5f5;
+  border: 1px solid #dbdbdb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-status.success {
+  background-color: #effaf3;
+  border: 1px solid #48c774;
+  color: #257942;
+}
+
+.payment-status.error {
+  background-color: #feecf0;
+  border: 1px solid #f14668;
+  color: #cc0f35;
+}
+
+.status-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.success-icon {
+  color: #48c774;
+}
+
+.error-icon {
+  color: #f14668;
+}
+
+.status-message {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.error-help {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+/* Transaction details styling */
+.transaction-details {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.transaction-details pre {
+  white-space: pre-line;
+  font-family: monospace;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Loading spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #3273dc;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 1rem;
+}
+
+/* Animations */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
