@@ -30,14 +30,58 @@ export class CardFormComponent {
     }
   );
 
+  isProcessing = false;
+  paymentSuccess = false;
+  paymentError = false;
+
   constructor() {
     console.log(this.cardForm.get('name'));
   }
 
   onSubmit(){
-    console.log("Form is submited")
+    if (this.cardForm.invalid) {
+      // Mark all fields as touched to trigger validation messages
+      Object.keys(this.cardForm.controls).forEach(key => {
+        const control = this.cardForm.get(key);
+        control?.markAsTouched();
+      });
+      return;
+    }
+
+    // Set processing state
+    this.isProcessing = true;
+    this.paymentSuccess = false;
+    this.paymentError = false;
+
+    // Simulate payment processing with timeout
+    setTimeout(() => {
+      this.isProcessing = false;
+      
+      // Simulate 90% success rate
+      if (Math.random() < 0.9) {
+        this.paymentSuccess = true;
+        console.log("Payment processed successfully!");
+        console.log("Card details:", {
+          name: this.cardForm.value.name,
+          cardNumber: this.cardForm.value.card_number?.replace(/\d(?=\d{4})/g, "*"), // Mask card number for logging
+          expiration: this.cardForm.value.expiration
+        });
+        
+        // Reset form after successful submission with delay
+        setTimeout(() => {
+          this.cardForm.reset();
+          this.paymentSuccess = false;
+        }, 3000);
+      } else {
+        this.paymentError = true;
+        console.log("Payment failed. Please try again.");
+      }
+    }, 2000); // Simulate 2 second processing time
   }
+
   onResetClick(){
     this.cardForm.reset();
+    this.paymentSuccess = false;
+    this.paymentError = false;
   }
 }
