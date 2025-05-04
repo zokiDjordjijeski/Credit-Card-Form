@@ -31,8 +31,9 @@ export class CardFormComponent {
   );
 
   isProcessing = false;
-  paymentSuccess = false;
-  paymentError = false;
+  paymentStatus: 'idle' | 'processing' | 'success' | 'error' = 'idle';
+  statusMessage = '';
+  transactionDetails = '';
 
   constructor() {
     console.log(this.cardForm.get('name'));
@@ -50,8 +51,9 @@ export class CardFormComponent {
 
     // Set processing state
     this.isProcessing = true;
-    this.paymentSuccess = false;
-    this.paymentError = false;
+    this.paymentStatus = 'processing';
+    this.statusMessage = 'Processing your payment...';
+    this.transactionDetails = '';
 
     // Simulate payment processing with timeout
     setTimeout(() => {
@@ -59,29 +61,45 @@ export class CardFormComponent {
       
       // Simulate 90% success rate
       if (Math.random() < 0.9) {
-        this.paymentSuccess = true;
-        console.log("Payment processed successfully!");
-        console.log("Card details:", {
-          name: this.cardForm.value.name,
-          cardNumber: this.cardForm.value.card_number?.replace(/\d(?=\d{4})/g, "*"), // Mask card number for logging
-          expiration: this.cardForm.value.expiration
-        });
+        this.paymentStatus = 'success';
+        this.statusMessage = 'Payment successful! Thank you for your purchase.';
+        
+        // Create masked card number for display
+        const cardNumber = this.cardForm.value.card_number || '';
+        const maskedNumber = cardNumber.slice(-4).padStart(cardNumber.length, '*');
+        const formattedNumber = maskedNumber.replace(/(.{4})/g, '$1 ').trim();
+        
+        // Generate transaction ID
+        const transactionId = 'TXN' + Math.random().toString(36).substr(2, 9).toUpperCase();
+        
+        // Format transaction details for display
+        this.transactionDetails = `
+          Transaction ID: ${transactionId}
+          Card Holder: ${this.cardForm.value.name}
+          Card Number: ${formattedNumber}
+          Expiration: ${this.cardForm.value.expiration}
+          Amount: $${(Math.random() * 1000).toFixed(2)}
+          Date: ${new Date().toLocaleString()}
+        `;
         
         // Reset form after successful submission with delay
         setTimeout(() => {
           this.cardForm.reset();
-          this.paymentSuccess = false;
-        }, 3000);
+          this.paymentStatus = 'idle';
+          this.statusMessage = '';
+          this.transactionDetails = '';
+        }, 5000);
       } else {
-        this.paymentError = true;
-        console.log("Payment failed. Please try again.");
+        this.paymentStatus = 'error';
+        this.statusMessage = 'Payment failed. Please check your card details and try again.';
       }
     }, 2000); // Simulate 2 second processing time
   }
 
   onResetClick(){
     this.cardForm.reset();
-    this.paymentSuccess = false;
-    this.paymentError = false;
+    this.paymentStatus = 'idle';
+    this.statusMessage = '';
+    this.transactionDetails = '';
   }
 }
