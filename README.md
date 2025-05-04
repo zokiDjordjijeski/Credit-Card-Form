@@ -8,7 +8,7 @@ This project is an interactive credit card form built with Angular. It provides 
 
 ## Live Demo
 
-**Check out the live demo:** [Credit Card Form on Vercel](https://credit-card-form-gamma.vercel.app/)
+**Check out the live demo:** [Credit Card Form on Vercel](https://credit-card-form-455p.vercel.app/)
 
 Experience the application without having to install it locally. The demo showcases all features including real-time card preview and form validation.
 
