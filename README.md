@@ -4,8 +4,8 @@
 
 This project is an interactive credit card form built with Angular. It provides a user-friendly interface for entering credit card information with real-time validation and a visual card preview that updates as the user types.
 
-![Credit Card Form Preview](https://via.placeholder.com/800x400?text=Credit+Card+Form+Preview)
-![Screenshot (16)](https://github.com/user-attachments/assets/7d272a9e-7de0-414c-b7b6-d98b3108cb73)
+![Screenshot (16)](https://github.com/user-attachments/assets/fb493100-8eb3-4397-914f-0a22d3817d02)
+
 
 
 ## Features
