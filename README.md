@@ -6,7 +6,11 @@ This project is an interactive credit card form built with Angular. It provides 
 
 ![Screenshot (16)](https://github.com/user-attachments/assets/fb493100-8eb3-4397-914f-0a22d3817d02)
 
+## Live Demo
 
+**Check out the live demo:** [Credit Card Form on Vercel](https://credit-card-form-gamma.vercel.app/)
+
+Experience the application without having to install it locally. The demo showcases all features including real-time card preview and form validation.
 
 ## Features
 
@@ -17,15 +21,6 @@ This project is an interactive credit card form built with Angular. It provides 
   - Expiration date (MM/YY format)
   - CVV code
 
-## Technologies Used
-
-- Angular 17+
-- TypeScript
-- Reactive Forms
-- Custom Form Controls
-- CSS for card animations
-
-4. Open your browser and navigate to `http://localhost:4200/`
 
 ## Project Structure
 
